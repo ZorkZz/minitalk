@@ -69,5 +69,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 int		ft_printf(const char *str, ...);
 char	*get_next_line(int fd);
+void	ft_putnbr_base(int nbr, char *base);
 
 #endif
