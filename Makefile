@@ -6,7 +6,7 @@
 #    By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 15:00:51 by astachni          #+#    #+#              #
-#    Updated: 2023/03/07 01:50:45 by astachni         ###   ########.fr        #
+#    Updated: 2023/03/09 00:12:35 by astachni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ HEADER = header/minitalk.h
 
 RM = rm -f
 
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -Werror
 
 CC = cc
 
@@ -31,6 +31,7 @@ libft:
 
 $(NAME_CLIENT):	$(LIBS) $(HEADER) Makefile
 	$(CC) -g3 $(CFLAGS) client.c $(LIBS) -o $(NAME_CLIENT)
+	@norminette
 
 $(NAME_SERVER):	$(LIBS) $(HEADER) Makefile
 	$(CC) -g3 $(CFLAGS) server.c $(LIBS) -o $(NAME_SERVER)
