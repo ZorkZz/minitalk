@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:08:42 by astachni          #+#    #+#             */
-/*   Updated: 2023/03/07 15:34:13 by astachni         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:51:51 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,38 @@
 
 int	main(int ac, char **av)
 {
-	int	nb;
-	int	cond;
+	int	pid;
 	int	i;
+	int	count;
+	int	w;
 
-	if (ac == 2)
+	if (ac == 3)
 	{
 		i = 0;
-		nb = ft_atoi(av[1]);
-		cond = nb;
-		while ((cond >> i) != 0)
+		count = 0;
+		w = 0;
+		pid = ft_atoi(av[1]);
+		while (av[2][w])
 		{
-			if ((nb >> i) % 2 == 0)
-				ft_printf("%d\n", kill(nb, SIGUSR1));
-			else
-				ft_printf("%d\n", kill(nb, SIGUSR2));
-			i++;
-			ft_printf("%d\n", cond >> i);
-			ft_printf("%d\n", (cond >> i));
-			i++;
-			sleep(1);
+			while (count < 16)
+			{
+				if ((av[2][w] >> i) != 0)
+				{
+					if ((av[2][w] >> i) % 2 == 0)
+						kill(pid, SIGUSR1);
+					else if ((av[2][w] >> i) % 2 == 1)
+						kill(pid, SIGUSR2);
+					i++;
+				}
+				else if ((av[2][w] >> i) == 0)
+					kill(pid, SIGUSR1);
+				count++;
+				usleep(500);
+			}
+			i = 0;
+			count = 0;
+			w++;
 		}
-		ft_printf("\n");
-		ft_putnbr_base(ft_atoi(av[1]), "01");
 	}
 	return (0);
 }

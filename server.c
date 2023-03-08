@@ -6,61 +6,53 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:41:01 by astachni          #+#    #+#             */
-/*   Updated: 2023/03/07 15:36:16 by astachni         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:38:55 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/minitalk.h"
 
-int	value;
+int	value[16], nb_bit;
 
 void	signal_handler(int sign)
 {
 
 	if (sign == 10)
-		value = (value << 1) | 0;
+		value[nb_bit] = 0;
 	else if (sign == 12)
-		value = (value << 1) | 1;
-	ft_putnbr_base(value, "01");
-	ft_printf("\n");
-	ft_printf("%d\n", value);
-}
-
-int	reverse_signal(int	value)
-{
-	int	return_value;
-	int	i;
-
-	i = 0;
-	return_value = 0;
-	while (i < 10)
-	{
-		return_value |= ((value << i) & 1) << (15 - i);
-	}
-	ft_printf("%d\n", return_value);
-	return (return_value);
+		value[nb_bit] = 1;
 }
 
 int	main(void)
 {
-	__pid_t				pid;
-	int					nb_bit;
-	struct sigaction	new_handler;
+	__pid_t	pid;
+	int		to_write;
 
 	pid = getpid();
-	value = 0;
 	nb_bit = 0;
 	ft_printf("%d\n", pid);
-	new_handler.sa_handler = signal_handler;
-	sigaction(SIGUSR1, &new_handler, NULL);
-	sigaction(SIGUSR2, &new_handler, NULL);
-	while (1)
+	signal(SIGUSR1, signal_handler);
+	signal(SIGUSR2, signal_handler);
+	ft_bzero(value, 17);
+	while (nb_bit < 16)
 	{
 		pause();
 		nb_bit++;
-		ft_printf("%d\n", nb_bit);
-		if (nb_bit == 15)
-			reverse_signal(value);
+		if (nb_bit == 16)
+		{
+			to_write = 0;
+			nb_bit--;
+			while (nb_bit >= 0)
+			{
+				if (value[nb_bit] == 0)
+					to_write = (to_write << 1) | 0;
+				else
+					to_write = (to_write << 1) | 1;
+				nb_bit--;
+			}
+			ft_printf("%c", to_write);
+			nb_bit = 0;
+		}
 	}
 	return (0);
 }
