@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:08:42 by astachni          #+#    #+#             */
-/*   Updated: 2023/03/08 15:51:51 by astachni         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:33:51 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 				else if ((av[2][w] >> i) == 0)
 					kill(pid, SIGUSR1);
 				count++;
-				usleep(500);
+				usleep(250);
 			}
 			i = 0;
 			count = 0;

@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:41:01 by astachni          #+#    #+#             */
-/*   Updated: 2023/03/08 15:38:55 by astachni         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:40:14 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@ int	main(void)
 {
 	__pid_t	pid;
 	int		to_write;
+	struct sigaction	new_handler;
 
 	pid = getpid();
 	nb_bit = 0;
 	ft_printf("%d\n", pid);
+	new_handler.sa_handler = signal_handler;
+	// sigaction(SIGUSR1, &new_handler, NULL);
+	// sigaction(SIGUSR2, &new_handler, NULL);
 	signal(SIGUSR1, signal_handler);
 	signal(SIGUSR2, signal_handler);
-	ft_bzero(value, 17);
 	while (nb_bit < 16)
 	{
 		pause();
@@ -51,7 +54,9 @@ int	main(void)
 				nb_bit--;
 			}
 			ft_printf("%c", to_write);
+			//ft_putnbr_base(to_write, "01");
 			nb_bit = 0;
+			ft_bzero(value, 17);
 		}
 	}
 	return (0);
