@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:08:42 by astachni          #+#    #+#             */
-/*   Updated: 2023/03/09 00:27:14 by astachni         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:15:45 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,12 @@ void	condition_to_send(int pid, int ac, char **av)
 			{
 				send_bits(' ', pid);
 			}
+			usleep(50);
 		}
 		i++;
+		usleep(50);
 	}
+	send_bits(0, pid);
 }
 
 void	send_bits(char c, int pid)
@@ -75,6 +78,6 @@ void	send_bits(char c, int pid)
 			kill(pid, SIGUSR1);
 		count++;
 		shift++;
-		usleep(100);
+		usleep(150);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:43:07 by astachni          #+#    #+#             */
-/*   Updated: 2023/03/07 00:47:34 by astachni         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:51:12 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,8 @@
 
 # include "../libs/libft/libft.h"
 # include <signal.h>
+
+char	*add_char(char *str, int nb_bit, int *tab_bit);
+int		*reset_buffer(int *tab_bit);
 
 #endif
