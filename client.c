@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:08:42 by astachni          #+#    #+#             */
-/*   Updated: 2023/03/09 15:15:45 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:15:16 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void	send_bits(char c, int pid)
 			kill(pid, SIGUSR1);
 		count++;
 		shift++;
-		usleep(150);
+		usleep(70);
 	}
 }
