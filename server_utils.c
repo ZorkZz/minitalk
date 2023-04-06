@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:22:28 by astachni          #+#    #+#             */
-/*   Updated: 2023/03/09 15:16:05 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:37:54 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*add_char(char *str, int nb_bit, int *tab_bit)
 	c = 0;
 	i = 0;
 	c = bin_to_char(nb_bit, tab_bit, str);
+	if (c == 0)
+		return (free(str), NULL);
 	new_str = malloc((ft_strlen(str) + 2) * sizeof(char));
 	if (!new_str)
 		return (NULL);
@@ -33,12 +35,11 @@ char	*add_char(char *str, int nb_bit, int *tab_bit)
 			new_str[i] = str[i];
 			i++;
 		}
-		free(str);
+		if (str)
+			free(str);
 	}
 	new_str[i] = c;
 	new_str[i + 1] = 0;
-	if (c == 0)
-		return (free(new_str), NULL);
 	return (new_str);
 }
 

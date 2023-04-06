@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:08:42 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/05 20:02:10 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:23:58 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,10 @@ void	send_bits(char c, int pid, int i)
 {
 	int					count;
 	int					shift;
-	struct sigaction	sa;
 
-	sa.sa_handler = handler;
 	count = 0;
 	shift = 0;
-	sigaction(SIGUSR1, &sa, NULL);
+	signal(SIGUSR1, handler);
 	while (count < 8)
 	{
 		while (g_bit_recive == 0 && i != 2)
