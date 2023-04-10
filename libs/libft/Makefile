@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: astachni <astachni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 15:26:10 by marvin@42.f       #+#    #+#              #
-#    Updated: 2023/03/06 21:35:44 by astachni         ###   ########.fr        #
+#    Updated: 2023/04/10 13:50:05 by astachni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ HEADER = libft.h
 %.o: %.c ${HEADER} Makefile
 	$(CC) ${CFLAGS} -c $< -o ${<:.c=.o}
 
-$(NAME):	${OBJS}
-	ar rcs ${NAME} ${OBJS}
+$(NAME):	${OBJS} $(OBJS_BONUS)
+	ar rcs ${NAME} ${OBJS} $(OBJS_BONUS)
 
 all: $(NAME)
 

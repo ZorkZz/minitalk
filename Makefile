@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: astachni <astachni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 15:00:51 by astachni          #+#    #+#              #
-#    Updated: 2023/04/06 20:20:23 by astachni         ###   ########.fr        #
+#    Updated: 2023/04/10 13:50:31 by astachni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ $(OBJS_DIR)%.o: %.c $(HEADER) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 libft:
-	make -C libs/libft bonus
+	make -C libs/libft
 
 $(NAME_CLIENT): $(LIBS) $(OBJS_CLIENT) $(HEADER) Makefile
 	$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBS) -o $(NAME_CLIENT)
@@ -55,6 +55,7 @@ clean:
 	$(RM) $(OBJS_CLIENT)
 
 fclean: clean
+	make fclean -C libs/libft
 	$(RM) $(NAME_CLIENT) $(NAME_SERVER)
 
 re: fclean all

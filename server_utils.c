@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:22:28 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/06 20:37:54 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:49:46 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	bin_to_char(int nb_bit, int *tab_bit, char *str);
 
-char	*add_char(char *str, int nb_bit, int *tab_bit)
+char	*add_char(char *str, int nb_bit, int *tab_bit, int client_pid)
 {
 	int		i;
 	char	c;
@@ -22,6 +22,7 @@ char	*add_char(char *str, int nb_bit, int *tab_bit)
 
 	c = 0;
 	i = 0;
+	(void)client_pid;
 	c = bin_to_char(nb_bit, tab_bit, str);
 	if (c == 0)
 		return (free(str), NULL);
@@ -59,7 +60,10 @@ char	bin_to_char(int nb_bit, int *tab_bit, char *str)
 	}
 	reset_buffer(tab_bit);
 	if (to_write == 0)
+	{
 		ft_printf("%s\n", str);
+		g_value_bit = -1;
+	}
 	return (to_write);
 }
 
@@ -68,7 +72,7 @@ int	*reset_buffer(int *tab_bit)
 	int	i;
 
 	i = 0;
-	while (i < 16)
+	while (i < 8)
 		tab_bit[i++] = 0;
 	return (tab_bit);
 }
