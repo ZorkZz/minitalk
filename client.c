@@ -6,19 +6,11 @@
 /*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:08:42 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/10 16:49:05 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:51:31 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/minitalk.h"
-
-void	condition_to_send(int pid, int ac, char **av);
-void	send_bits(char c, int pid, int i);
-void	kill_bit(char c, int shift, int pid);
-void	handler(int sign);
-void	wait(void);
-
-int	g_bit_recive;
+#include "header/minitalk_client.h"
 
 int	main(int ac, char **av)
 {
@@ -101,28 +93,4 @@ void	handler(int sign)
 		exit(1);
 	}
 	g_bit_recive = 1;
-}
-
-void	wait(void)
-{
-	int	time;
-
-	time = 0;
-	if (g_bit_recive == 1)
-	{
-		g_bit_recive = 0;
-		return ;
-	}
-	while (time < 2000000)
-	{
-		if (g_bit_recive == 1)
-		{
-			g_bit_recive = 0;
-			return ;
-		}
-		usleep(10);
-		time += 10;
-	}
-	ft_putstr_fd("ERROR SERVER \n", 2);
-	exit(1);
 }

@@ -6,23 +6,21 @@
 /*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:22:28 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/10 16:49:46 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:52:15 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/minitalk.h"
+#include "header/minitalk_server.h"
 
 char	bin_to_char(int nb_bit, int *tab_bit, char *str);
 
-char	*add_char(char *str, int nb_bit, int *tab_bit, int client_pid)
+char	*add_char(char *str, int nb_bit, int *tab_bit)
 {
 	int		i;
 	char	c;
 	char	*new_str;
 
-	c = 0;
 	i = 0;
-	(void)client_pid;
 	c = bin_to_char(nb_bit, tab_bit, str);
 	if (c == 0)
 		return (free(str), NULL);
@@ -38,6 +36,7 @@ char	*add_char(char *str, int nb_bit, int *tab_bit, int client_pid)
 		}
 		if (str)
 			free(str);
+		str = NULL;
 	}
 	new_str[i] = c;
 	new_str[i + 1] = 0;
@@ -75,4 +74,13 @@ int	*reset_buffer(int *tab_bit)
 	while (i < 8)
 		tab_bit[i++] = 0;
 	return (tab_bit);
+}
+
+void	error(char *str, int client_pid)
+{
+	if (str)
+		free(str);
+	ft_putstr_fd("Error \n", 2);
+	kill(client_pid, SIGUSR2);
+	exit(1);
 }

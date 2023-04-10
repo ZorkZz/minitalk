@@ -6,11 +6,11 @@
 /*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:41:01 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/10 16:50:11 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:54:13 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/minitalk.h"
+#include "header/minitalk_server.h"
 
 void	signal_handler(int sign, siginfo_t *info, void	*context);
 
@@ -43,12 +43,7 @@ void	signal_handler(int sign, siginfo_t *info, void	*context)
 
 	(void)context;
 	if (client_pid != -1 && g_value_bit != -1 && client_pid != info->si_pid)
-	{
-		if (str)
-			free(str);
-		ft_putstr_fd("Error \n", 2);
-		exit(1);
-	}
+		error(str, client_pid);
 	client_pid = info->si_pid;
 	if (sign == SIGUSR1)
 		g_value_bit = 0;
@@ -58,7 +53,7 @@ void	signal_handler(int sign, siginfo_t *info, void	*context)
 	g_value_bit = 0;
 	if (nb_bit == 8)
 	{
-		str = add_char(str, nb_bit, tab_bit, client_pid);
+		str = add_char(str, nb_bit, tab_bit);
 		nb_bit = 0;
 	}
 	kill(client_pid, SIGUSR1);

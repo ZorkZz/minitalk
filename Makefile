@@ -6,7 +6,7 @@
 #    By: astachni <astachni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 15:00:51 by astachni          #+#    #+#              #
-#    Updated: 2023/04/10 13:50:31 by astachni         ###   ########.fr        #
+#    Updated: 2023/04/10 18:53:29 by astachni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_SERVER = server
 
 SRCS_SERVER = server.c server_utils.c
 
-SRC_CLIENT = client.c
+SRC_CLIENT = client.c client_utils.c
 
 OBJS_DIR = objs/
 
@@ -26,7 +26,7 @@ OBJS_CLIENT = $(SRC_CLIENT:%.c=$(OBJS_DIR)%.o)
 
 LIBS = libs/libft/libft.a
 
-HEADER = header/minitalk.h
+HEADER = header/minitalk_server.h header/minitalk_client.h
 
 RM = rm -f
 
@@ -42,10 +42,10 @@ $(OBJS_DIR)%.o: %.c $(HEADER) Makefile
 libft:
 	make -C libs/libft
 
-$(NAME_CLIENT): $(LIBS) $(OBJS_CLIENT) $(HEADER) Makefile
+$(NAME_CLIENT): $(LIBS) $(OBJS_CLIENT) header/minitalk_client.h Makefile
 	$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBS) -o $(NAME_CLIENT)
 
-$(NAME_SERVER):	$(LIBS) $(OBJS_SERVER) $(HEADER) Makefile
+$(NAME_SERVER):	$(LIBS) $(OBJS_SERVER) header/minitalk_server.h Makefile
 	$(CC) $(CFLAGS) $(OBJS_SERVER) $(LIBS) -o $(NAME_SERVER)
 	@norminette
 
