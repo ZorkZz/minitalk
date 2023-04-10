@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_client.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:49:37 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/10 18:51:27 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 00:25:49 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,5 @@ void	send_bits(char c, int pid, int i);
 void	kill_bit(char c, int shift, int pid);
 void	handler(int sign);
 void	wait(void);
-
-int	g_bit_recive;
 
 #endif

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   server_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:22:28 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/10 18:52:15 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 00:37:01 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/minitalk_server.h"
+
+extern int	g_value_bit;
 
 char	bin_to_char(int nb_bit, int *tab_bit, char *str);
 

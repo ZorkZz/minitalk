@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:41:01 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/10 18:54:13 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 00:26:49 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/minitalk_server.h"
+
+int	g_value_bit;
 
 void	signal_handler(int sign, siginfo_t *info, void	*context);
 
