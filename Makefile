@@ -6,7 +6,7 @@
 #    By: astachni <astachni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 15:00:51 by astachni          #+#    #+#              #
-#    Updated: 2023/04/10 18:53:29 by astachni         ###   ########.fr        #
+#    Updated: 2023/04/11 13:57:58 by astachni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME_CLIENT = client
 
 NAME_SERVER = server
 
-SRCS_SERVER = server.c server_utils.c
+SRCS_SERVER = srcs/server.c srcs/server_utils.c
 
-SRC_CLIENT = client.c client_utils.c
+SRC_CLIENT = srcs/client.c srcs/client_utils.c
 
 OBJS_DIR = objs/
 
@@ -37,17 +37,19 @@ CC = cc
 all: libft $(NAME_CLIENT) $(NAME_SERVER)
 
 $(OBJS_DIR)%.o: %.c $(HEADER) Makefile
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 libft:
-	make -C libs/libft
+	@make -C libs/libft
 
 $(NAME_CLIENT): $(LIBS) $(OBJS_CLIENT) header/minitalk_client.h Makefile
 	$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBS) -o $(NAME_CLIENT)
 
 $(NAME_SERVER):	$(LIBS) $(OBJS_SERVER) header/minitalk_server.h Makefile
 	$(CC) $(CFLAGS) $(OBJS_SERVER) $(LIBS) -o $(NAME_SERVER)
-	@norminette
+
+norm:
+	@norminette | grep Error!
 
 clean:
 	make clean -C libs/libft

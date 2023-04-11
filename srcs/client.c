@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:08:42 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/11 00:25:55 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:54:23 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/minitalk_client.h"
+#include "../header/minitalk_client.h"
 
 int	g_bit_recive;
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	int	pid;
 
 	signal(SIGUSR1, handler);
+	signal(SIGUSR2, handler);
 	g_bit_recive = 1;
 	if (ac >= 3)
 	{
@@ -91,7 +92,7 @@ void	handler(int sign)
 {
 	if (sign != SIGUSR1)
 	{
-		ft_putstr_fd("ERROR\n", 2);
+		ft_putstr_fd("ERROR SERVER\n", 2);
 		exit(1);
 	}
 	g_bit_recive = 1;

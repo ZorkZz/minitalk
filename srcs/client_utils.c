@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   client_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:49:19 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/11 00:26:12 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:35:38 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/minitalk_client.h"
+#include "../header/minitalk_client.h"
 
 extern int	g_bit_recive;
 

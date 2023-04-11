@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   server_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astachni <astachni@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:22:28 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/11 00:37:01 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:54:59 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/minitalk_server.h"
+#include "../header/minitalk_server.h"
 
 extern int	g_value_bit;
 
 char	bin_to_char(int nb_bit, int *tab_bit, char *str);
 
-char	*add_char(char *str, int nb_bit, int *tab_bit)
+char	*add_char(char *str, int nb_bit, int *tab_bit, int client_pid)
 {
 	int		i;
 	char	c;
@@ -28,7 +28,7 @@ char	*add_char(char *str, int nb_bit, int *tab_bit)
 		return (free(str), NULL);
 	new_str = malloc((ft_strlen(str) + 2) * sizeof(char));
 	if (!new_str)
-		return (NULL);
+		return (error(str, client_pid), NULL);
 	if (str != NULL)
 	{
 		while (str[i])
@@ -82,7 +82,7 @@ void	error(char *str, int client_pid)
 {
 	if (str)
 		free(str);
-	ft_putstr_fd("Error \n", 2);
+	ft_putstr_fd("ERROR \n", 2);
 	kill(client_pid, SIGUSR2);
 	exit(1);
 }
