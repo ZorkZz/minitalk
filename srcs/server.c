@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:41:01 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/11 13:55:34 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:12:42 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	main(void)
 
 void	signal_handler(int sign, siginfo_t *info, void	*context)
 {
-	static int	client_pid = -1;
-	static int	nb_bit = 0;
-	static int	tab_bit[8];
-	static char	*str = NULL;
+	static int				client_pid = -1;
+	static int				nb_bit = 0;
+	static int				tab_bit[8];
+	static unsigned char	*str = NULL;
 
 	(void)context;
 	if (client_pid != -1 && g_value_bit != -1 && client_pid != info->si_pid)

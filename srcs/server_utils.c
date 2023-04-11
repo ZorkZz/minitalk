@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:22:28 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/11 13:54:59 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:17:13 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 extern int	g_value_bit;
 
-char	bin_to_char(int nb_bit, int *tab_bit, char *str);
-
-char	*add_char(char *str, int nb_bit, int *tab_bit, int client_pid)
+unsigned char	*add_char(unsigned char *str, int nb_bit, int *tab_bit,
+	int client_pid)
 {
-	int		i;
-	char	c;
-	char	*new_str;
+	int				i;
+	unsigned char	c;
+	unsigned char	*new_str;
 
 	i = 0;
 	c = bin_to_char(nb_bit, tab_bit, str);
 	if (c == 0)
 		return (free(str), NULL);
-	new_str = malloc((ft_strlen(str) + 2) * sizeof(char));
+	new_str = malloc((ft_strlen((char *)str) + 2) * sizeof(unsigned char));
 	if (!new_str)
 		return (error(str, client_pid), NULL);
 	if (str != NULL)
@@ -45,7 +44,7 @@ char	*add_char(char *str, int nb_bit, int *tab_bit, int client_pid)
 	return (new_str);
 }
 
-char	bin_to_char(int nb_bit, int *tab_bit, char *str)
+unsigned char	bin_to_char(int nb_bit, int *tab_bit, unsigned char *str)
 {
 	char	to_write;
 
@@ -78,7 +77,7 @@ int	*reset_buffer(int *tab_bit)
 	return (tab_bit);
 }
 
-void	error(char *str, int client_pid)
+void	error(unsigned char *str, int client_pid)
 {
 	if (str)
 		free(str);

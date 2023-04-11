@@ -6,7 +6,7 @@
 /*   By: astachni <astachni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:08:42 by astachni          #+#    #+#             */
-/*   Updated: 2023/04/11 13:54:23 by astachni         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:11:34 by astachni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	condition_to_send(int pid, int ac, char **av)
 		j = 0;
 		while (av && av[i] && av[i][j])
 		{
-			send_bits(av[i][j], pid, i);
+			send_bits((unsigned char) av[i][j], pid, i);
 			j++;
 			if (i < ac - 1 && av[i][j] == '\0')
 				send_bits(' ', pid, i);
@@ -53,7 +53,7 @@ void	condition_to_send(int pid, int ac, char **av)
 	ft_printf("\033[38;5;213mmessage envoye\n\033[0m");
 }
 
-void	send_bits(char c, int pid, int i)
+void	send_bits(unsigned char c, int pid, int i)
 {
 	int					count;
 	int					shift;
@@ -70,7 +70,7 @@ void	send_bits(char c, int pid, int i)
 	}
 }
 
-void	kill_bit(char c, int shift, int pid)
+void	kill_bit(unsigned char c, int shift, int pid)
 {
 	if ((c >> shift) != 0)
 	{

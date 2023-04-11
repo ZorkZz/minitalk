@@ -6,7 +6,7 @@
 #    By: astachni <astachni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 15:00:51 by astachni          #+#    #+#              #
-#    Updated: 2023/04/11 13:57:58 by astachni         ###   ########.fr        #
+#    Updated: 2023/04/11 15:34:37 by astachni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,30 +34,35 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = cc
 
-all: libft $(NAME_CLIENT) $(NAME_SERVER)
+all: libft $(NAME_CLIENT) $(NAME_SERVER) norm
 
 $(OBJS_DIR)%.o: %.c $(HEADER) Makefile
 	@$(CC) $(CFLAGS) -c $< -o $@
+	@printf	"\033[1;33m \r\033[2KCreating -c $< -o $\n \033[0m"
 
 libft:
-	@make -C libs/libft
+	@make -sC libs/libft
 
 $(NAME_CLIENT): $(LIBS) $(OBJS_CLIENT) header/minitalk_client.h Makefile
-	$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBS) -o $(NAME_CLIENT)
+	@$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBS) -o $(NAME_CLIENT)
+	@printf	"\033[1;32m \r\033[2K Compiling $(NAME_CLIENT) : DONE \033[0m\n"
 
 $(NAME_SERVER):	$(LIBS) $(OBJS_SERVER) header/minitalk_server.h Makefile
-	$(CC) $(CFLAGS) $(OBJS_SERVER) $(LIBS) -o $(NAME_SERVER)
+	@$(CC) $(CFLAGS) $(OBJS_SERVER) $(LIBS) -o $(NAME_SERVER)
+	@printf	"\033[1;32m \r\033[2K Compiling $(NAME_SERVER) : DONE \033[0m\n\n"
 
 norm:
-	@norminette | grep Error!
+	@norminette
 
 clean:
-	make clean -C libs/libft
-	$(RM) $(OBJS_SERVER)
-	$(RM) $(OBJS_CLIENT)
+	@make clean -sC libs/libft
+	@$(RM) $(OBJS_SERVER)
+	@$(RM) $(OBJS_CLIENT)
+	@printf	"\033[1;31mDeleting objects : DONE \033[1;31m\n"
 
 fclean: clean
-	make fclean -C libs/libft
-	$(RM) $(NAME_CLIENT) $(NAME_SERVER)
+	@make fclean -sC libs/libft
+	@$(RM) $(NAME_CLIENT) $(NAME_SERVER)
+	@printf "\033[1;31mDeleting executable : DONE \033[1;31m\n\n"
 
 re: fclean all
